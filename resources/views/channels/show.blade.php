@@ -30,6 +30,23 @@
                             </div>
                         </div>
 
+						<div class="text-center mb-5">
+							<subscribe-button :channel="{{ $channel }}" :subscriptions="{{ $channel->subscriptions }}" inline-template>
+								<button @click="toggleSubscription" class="btn btn-danger">
+									@{{ owner ? '' : subscribed ? 'Unsubscribe' : 'Subscribe' }} @{{ subscriptions.length }} @{{ owner ? 'Subscribers' : '' }}
+								</button>
+							</subscribe-button>
+						</div>
+						<div class="form-group justify-content-center">
+							<h4 class="text-center">
+								{{ $channel->name }}
+							</h4>
+						</div>
+						<div class="form-group justify-content-center">
+							<p class="text-center">
+								{{ $channel->description }}
+							</p>
+						</div>
                         @if ($channel->editable())
                             <input onChange="document.getElementById('update-channel-form').submit()" style="display: none;" id="image" type="file" name="image">
                             <div class="form-group">
@@ -56,24 +73,6 @@
                             <button type="submit" class="btn btn-info">
                                 Update channel
                             </button>
-                        @else
-                            <div class="form-group justify-content-center">
-                                <h4 class="text-center">
-                                    {{ $channel->name }}
-                                </h4>
-                            </div>
-                            <div class="form-group justify-content-center">
-                                <p class="text-center">
-                                    {{ $channel->description }}
-                                </p>
-                                <div class="text-center">
-                                    <subscribe-button :subscriptions="{{ $channel->subscriptions }}" inline-template>
-                                        <button @click="toggleSubscription" class="btn btn-danger">
-                                            Subscribe
-                                        </button>
-                                    </subscribe-button>
-                                </div>
-                            </div>
                         @endif
                     @if ($channel->editable())
                     </form>
