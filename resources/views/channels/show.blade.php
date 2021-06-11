@@ -55,7 +55,7 @@
                             @endif
                             <button type="submit" class="btn btn-info">
                                 Update channel
-                            </button
+                            </button>
                         @else
                             <div class="form-group justify-content-center">
                                 <h4 class="text-center">
