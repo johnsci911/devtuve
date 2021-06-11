@@ -44,13 +44,15 @@
                                 </label>
                                 <textarea name="description" id="description" class="form-control" rows="3">{{ $channel->description }}</textarea>
                             </div>
-                            <ul class="list-group mb-5">
-                                @foreach ($errors->all() as $error)
-                                    <li class="list-group-item text-danger">
-                                        {{ $error }}
-                                    </li>
-                                @endforeach
-                            </ul>
+                            @if ($errors->count())
+                                <ul class="list-group mb-5">
+                                    @foreach ($errors->all() as $error)
+                                        <li class="list-group-item text-danger">
+                                            {{ $error }}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
                             <button type="submit" class="btn btn-info">
                                 Update channel
                             </button
