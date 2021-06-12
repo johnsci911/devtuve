@@ -1899,6 +1899,18 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! numeral */ "./node_modules/numeral/numeral.js");
 /* harmony import */ var numeral__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(numeral__WEBPACK_IMPORTED_MODULE_0__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 
 Vue.component('subscribe-button', {
   props: {
@@ -1909,13 +1921,18 @@ Vue.component('subscribe-button', {
         return {};
       }
     },
-    subscriptions: {
+    initialSubscriptions: {
       type: Array,
       required: true,
       "default": function _default() {
         return [];
       }
     }
+  },
+  data: function data() {
+    return {
+      subscriptions: this.initialSubscriptions
+    };
   },
   computed: {
     subscribed: function subscribed() {
@@ -1938,6 +1955,8 @@ Vue.component('subscribe-button', {
   },
   methods: {
     toggleSubscription: function toggleSubscription() {
+      var _this = this;
+
       if (!__auth()) {
         return alert('Please login to subscribe');
       }
@@ -1947,9 +1966,15 @@ Vue.component('subscribe-button', {
       }
 
       if (this.subscribed) {
-        axios["delete"]("/channels/".concat(this.channel.id, "/subscriptions/").concat(this.subscription.id));
+        axios["delete"]("/channels/".concat(this.channel.id, "/subscriptions/").concat(this.subscription.id)).then(function () {
+          _this.subscriptions = _this.subscriptions.filter(function (s) {
+            return s.id != _this.subscription.id;
+          });
+        });
       } else {
-        axios.post("/channels/".concat(this.channel.id, "/subscriptions"));
+        axios.post("/channels/".concat(this.channel.id, "/subscriptions")).then(function (response) {
+          _this.subscriptions = [].concat(_toConsumableArray(_this.subscriptions), [response.data]);
+        });
       }
     }
   }
