@@ -16,7 +16,7 @@ Vue.component('subscribe-button', {
 		subscribed() {
 			if (! __auth() || this.channel.user_id === __auth().id) return false
 
-			return !! this.subscriptions.find(subscription => subscription.user_id === __auth().id)
+			return !! this.subscription
 		},
         owner() {
             if (__auth() && this.channel.user_id === __auth().id) return true
@@ -25,13 +25,28 @@ Vue.component('subscribe-button', {
         },
         count() {
             return numeral(this.subscriptions.length).format('0a')
+        },
+        subscription() {
+            if (! __auth()) return null
+
+            return this.subscriptions.find(subscription => subscription.user_id === __auth().id)
         }
 	},
 	methods: {
 		toggleSubscription() {
 			if (! __auth()) {
-				alert('Please login to subscribe')
+				return alert('Please login to subscribe')
 			}
+
+            if (this.owner) {
+                return alert('You cannot subscribe to your channel.')
+            }
+
+            if (this.subscribed) {
+                axios.delete(`/channels/${this.channel.id}/subscriptions/${this.subscription.id}`)
+            } else {
+                axios.post(`/channels/${this.channel.id}/subscriptions`)
+            }
 		}
 	}
 });
