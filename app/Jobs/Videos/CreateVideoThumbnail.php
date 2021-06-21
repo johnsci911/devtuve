@@ -38,10 +38,10 @@ class CreateVideoThumbnail implements ShouldQueue
 			->getFrameFromSeconds(1)
 			->export()
 			->toDisk('local')
-            ->save(Storage::url("thumbnails/{$this->video->id}.png"));
+            ->save("public/thumbnails/{$this->video->id}.png");
 
         $this->video->update([
-            'thumbnail' => Storage::url("thumbnail/{$this->video->id}.pnd"),
+            'thumbnail' => Storage::url("thumbnails/{$this->video->id}.png"),
         ]);
     }
 }
