@@ -40,7 +40,12 @@ class ConvertForStreaming implements ShouldQueue
 
         FFMpeg::fromDisk('local')
             ->open($this->video->path)
-            ->exportForHLS()
+			->exportForHLS()
+			->onProgress(function ($percentage) {
+				$this->video->update([
+					'percentage' => $percentage,
+				]);
+			})
             ->addFormat($low)
             ->addFormat($mid)
             ->addFormat($high)
