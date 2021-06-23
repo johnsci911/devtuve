@@ -9,8 +9,7 @@
 
     <title>{{ config('app.name') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+	<link rel="shortcut icon" href="favicon.ico">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +17,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	@yield('styles')
 </head>
 <body>
     <div id="app">
@@ -93,5 +93,10 @@
 			}
 		}
 	</script>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}"></script>
+
+	@yield('scripts')
 </body>
 </html>

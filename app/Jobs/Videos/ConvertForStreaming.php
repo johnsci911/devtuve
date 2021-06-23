@@ -49,6 +49,6 @@ class ConvertForStreaming implements ShouldQueue
             ->addFormat($low)
             ->addFormat($mid)
             ->addFormat($high)
-            ->save("public/videos/{$this->video->id}.m3u8");
+            ->save("public/videos/{$this->video->id}/{$this->video->id}.m3u8");
     }
 }

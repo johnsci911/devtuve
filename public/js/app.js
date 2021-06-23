@@ -1869,6 +1869,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.config.ignoredElements = ['video-js'];
+
 __webpack_require__(/*! ./components/subscribe-button */ "./resources/js/components/subscribe-button.js");
 
 __webpack_require__(/*! ./components/channel-uploads */ "./resources/js/components/channel-uploads.js");
