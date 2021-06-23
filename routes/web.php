@@ -29,6 +29,7 @@ Route::resource('channels', ChannelController::class);
 
 Route::get('videos/{video}', [VideoController::class, 'show']);
 Route::put('videos/{video}', [VideoController::class, 'updateViews']);
+Route::put('videos/{video}/update', [VideoController::class, 'update'])->middleware(['auth'])->name('videos.update');
 
 Route::middleware(['auth'])->group(function () {
 	Route::post('channels/{channel}/videos', [UploadVideoController::class, 'store']);
