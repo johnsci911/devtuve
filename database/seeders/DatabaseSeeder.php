@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\Channel;
+use App\Models\Comment;
 use App\Models\Subscription;
 use App\Models\User;
+use App\Models\Video;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -42,6 +44,21 @@ class DatabaseSeeder extends Seeder
 		]);
 		Subscription::factory()->count(100)->create([
 			'channel_id' => $channel2->id
+		]);
+
+		$video = Video::factory()->create([
+			'channel_id' => $channel1->id
+		]);
+
+		Comment::factory()->count(50)->create([
+			'video_id' => $video->id
+		]);
+
+		$comment = Comment::first();
+
+		Comment::factory()->count(50)->create([
+			'video_id' => $video->id,
+			'comment_id' => $comment->id
 		]);
     }
 }
