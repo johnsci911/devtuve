@@ -20,7 +20,7 @@
                     C444.875,295.3,440.675,304.4,431.975,313.4z"/>
             </g>
         </svg>
-		{{ upvotes_count }}
+        {{ upvotes_count }}
 
         <svg @click="vote('down')" class="thumbs-down" :class="{'thumbs-down-active': downvoted}" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 width="475.092px" height="475.092px" viewBox="0 0 475.092 475.092" style="enable-background:new 0 0 475.092 475.092;"
@@ -70,16 +70,16 @@ export default {
             required: true,
             default: ''
         },
-		entity_id: {
-			required: true,
-			default: ''
-		}
+        entity_id: {
+            required: true,
+            default: ''
+        }
     },
-	data() {
-		return {
-			votes: this.default_votes
-		}
-	},
+    data() {
+        return {
+            votes: this.default_votes
+        }
+    },
     computed: {
         upvotes() {
             return this.votes.filter(v => v.type === 'up')
@@ -87,51 +87,51 @@ export default {
         downvotes() {
             return this.votes.filter(v => v.type === 'down')
         },
-		upvotes_count() {
-			return numeral(this.upvotes.length).format('0a')
-		},
-		downvotes_count() {
-			return numeral(this.downvotes.length).format('0a')
-		},
-		upvoted() {
-			if (! __auth()) return false
-			return !!this.upvotes.find(v => v.user_id === __auth().id)
-		},
-		downvoted() {
-			if (! __auth()) return false
-			return !!this.downvotes.find(v => v.user_id === __auth().id)
-		}
+        upvotes_count() {
+            return numeral(this.upvotes.length).format('0a')
+        },
+        downvotes_count() {
+            return numeral(this.downvotes.length).format('0a')
+        },
+        upvoted() {
+            if (! __auth()) return false
+            return !!this.upvotes.find(v => v.user_id === __auth().id)
+        },
+        downvoted() {
+            if (! __auth()) return false
+            return !!this.downvotes.find(v => v.user_id === __auth().id)
+        }
     },
-	methods: {
-		vote(type) {
-			if (! __auth()) {
-				 return alert('Please login to vote')
-			}
-			
-			if(__auth().id === this.entity_owner) {
-				return alert('You cannot vote this item')
-			}
+    methods: {
+        vote(type) {
+            if (! __auth()) {
+                 return alert('Please login to vote')
+            }
+            
+            if(__auth().id === this.entity_owner) {
+                return alert('You cannot vote this item')
+            }
 
             if(type === 'up' && this.upvoted) return
             if(type === 'down' && this.downvoted) return
 
-			axios.post(`/votes/${this.entity_id}/${type}`)
-				.then(({ data }) => {
-					if (this.upvoted || this.downvoted) {
-						this.votes = this.votes.map(v => {
-							if (v.user_id === __auth().id) {
-								return data
-							}
-							return v
-						})
-					} else {
-						this.votes = [
-							...this.votes,
-							data
-						]
-					}
-				})	
-		}
-	}
+            axios.post(`/votes/${this.entity_id}/${type}`)
+                .then(({ data }) => {
+                    if (this.upvoted || this.downvoted) {
+                        this.votes = this.votes.map(v => {
+                            if (v.user_id === __auth().id) {
+                                return data
+                            }
+                            return v
+                        })
+                    } else {
+                        this.votes = [
+                            ...this.votes,
+                            data
+                        ]
+                    }
+                })  
+        }
+    }
 }
 </script>
