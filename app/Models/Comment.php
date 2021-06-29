@@ -4,6 +4,8 @@ namespace App\Models;
 
 class Comment extends Model
 {
+    protected $with = ['user'];
+
 	public function video()
 	{
 		return $this->belongsTo(Video::class);

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChannelController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SubscriptionController;
 use App\Http\Controllers\UploadVideoController;
 use App\Http\Controllers\VideoController;
@@ -26,6 +27,7 @@ Route::resource('channels', ChannelController::class);
 
 Route::get('videos/{video}', [VideoController::class, 'show']);
 Route::put('videos/{video}', [VideoController::class, 'updateViews']);
+Route::get('videos/{video}/comments', [CommentController::class, 'index'])->name('video.comments');
 Route::put('videos/{video}/update', [VideoController::class, 'update'])->middleware(['auth'])->name('videos.update');
 
 Route::middleware(['auth'])->group(function () {

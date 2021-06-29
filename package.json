@@ -25,6 +25,7 @@
         "webpack-cli": "^4.7.0"
     },
     "dependencies": {
-        "numeral": "^2.0.6"
+        "numeral": "^2.0.6",
+        "vue-avatar": "^2.3.3"
     }
 }
