@@ -10,7 +10,7 @@
 				<votes :default_votes="reply.votes" :entity_id="reply.id" :entity_owner="reply.user.id"></votes>
             </div>
         </div>
-        <div v-if="comment.repliesCount > 0 && replies.next_page_url" class="text-center my-4">
+        <div v-if="comment.repliesCount > 0 && replies.next_page_url" class="text-center">
             <button @click="fetchReplies" class="btn btn-link btn-sm">Load more replies</button>
         </div>
     </div>

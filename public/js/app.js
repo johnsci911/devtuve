@@ -22872,7 +22872,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _vm.comment.repliesCount > 0 && _vm.replies.next_page_url
-        ? _c("div", { staticClass: "text-center my-4" }, [
+        ? _c("div", { staticClass: "text-center" }, [
             _c(
               "button",
               {
