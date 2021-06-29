@@ -22787,11 +22787,8 @@ var render = function() {
         _vm.comments.next_page_url
           ? _c(
               "button",
-              {
-                staticClass: "btn btn-success",
-                on: { click: _vm.fetchComments }
-              },
-              [_vm._v("\n                Load More\n            ")]
+              { staticClass: "btn btn-link", on: { click: _vm.fetchComments } },
+              [_vm._v("\n                Load more comments\n            ")]
             )
           : _c("span", [_vm._v("No more comments to show")])
       ])
@@ -22804,7 +22801,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-inline my-4 w-full" }, [
+    return _c("div", { staticClass: "form-inline mt-4 mb-2 w-full" }, [
       _c("input", {
         staticClass: "form-control form-control-sm w-80",
         attrs: { type: "text" }
@@ -22840,9 +22837,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "bg-light p-2 my-2" },
     [
       _vm._l(_vm.replies.data, function(reply) {
-        return _c("div", { key: reply.id, staticClass: "media mt-3" }, [
+        return _c("div", { key: reply.id, staticClass: "media" }, [
           _c(
             "a",
             { staticClass: "mr-3", attrs: { href: "#" } },
@@ -22878,7 +22876,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn-default btn-sm",
+                staticClass: "btn btn-link btn-sm",
                 on: { click: _vm.fetchReplies }
               },
               [_vm._v("Load more replies")]

@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="media mt-3" v-for="reply in replies.data" :key="reply.id">
+    <div class="bg-light p-2 my-2">
+        <div class="media" v-for="reply in replies.data" :key="reply.id">
             <a class="mr-3" href="#">
                 <avatar :username="reply.user.name" :size="30"></avatar>
             </a>
@@ -11,7 +11,7 @@
             </div>
         </div>
         <div v-if="comment.repliesCount > 0 && replies.next_page_url" class="text-center my-4">
-            <button @click="fetchReplies" class="btn-default btn-sm">Load more replies</button>
+            <button @click="fetchReplies" class="btn btn-link btn-sm">Load more replies</button>
         </div>
     </div>
 </template>

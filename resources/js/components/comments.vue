@@ -6,7 +6,7 @@
                 <h6 class="mt-0">{{ comment.user.name }}</h6>
                 <small>{{ comment.body }}</small>
                 <div class="mb-4">
-                    <div class="form-inline my-4 w-full">
+                    <div class="form-inline mt-4 mb-2 w-full">
                         <input type="text" class="form-control form-control-sm w-80">
                         <button class="btn btn-sm btn-primary ml-2">
                             <small>Add reply</small>
@@ -18,8 +18,8 @@
             </div>
         </div>
         <div class="text-center">
-            <button class="btn btn-success" @click="fetchComments" v-if="comments.next_page_url">
-                Load More
+            <button class="btn btn-link" @click="fetchComments" v-if="comments.next_page_url">
+                Load more comments
             </button>
             <span v-else>No more comments to show</span>
         </div>
