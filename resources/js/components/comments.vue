@@ -12,6 +12,7 @@
                             <small>Add reply</small>
                         </button>
                     </div>
+					<votes :default_votes="comment.votes" :entity_id="comment.id" :entity_owner="comment.user.id"></votes>
                     <replies :comment="comment"></replies>
                 </div>
             </div>

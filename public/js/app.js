@@ -1903,6 +1903,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['video'],
@@ -1967,6 +1968,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
 //
 //
 //
@@ -22763,6 +22765,14 @@ var render = function() {
                 [
                   _vm._m(0, true),
                   _vm._v(" "),
+                  _c("votes", {
+                    attrs: {
+                      default_votes: comment.votes,
+                      entity_id: comment.id,
+                      entity_owner: comment.user.id
+                    }
+                  }),
+                  _vm._v(" "),
                   _c("replies", { attrs: { comment: comment } })
                 ],
                 1
@@ -22781,7 +22791,7 @@ var render = function() {
                 staticClass: "btn btn-success",
                 on: { click: _vm.fetchComments }
               },
-              [_vm._v("\n            Load More\n        ")]
+              [_vm._v("\n                Load More\n            ")]
             )
           : _c("span", [_vm._v("No more comments to show")])
       ])
@@ -22840,13 +22850,26 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "media-body" }, [
-            _c("h6", { staticClass: "mt-0" }, [
-              _vm._v(_vm._s(reply.user.name))
-            ]),
-            _vm._v(" "),
-            _c("small", [_vm._v(_vm._s(reply.body))])
-          ])
+          _c(
+            "div",
+            { staticClass: "media-body" },
+            [
+              _c("h6", { staticClass: "mt-0" }, [
+                _vm._v(_vm._s(reply.user.name))
+              ]),
+              _vm._v(" "),
+              _c("small", [_vm._v(_vm._s(reply.body))]),
+              _vm._v(" "),
+              _c("votes", {
+                attrs: {
+                  default_votes: reply.votes,
+                  entity_id: reply.id,
+                  entity_owner: reply.user.id
+                }
+              })
+            ],
+            1
+          )
         ])
       }),
       _vm._v(" "),

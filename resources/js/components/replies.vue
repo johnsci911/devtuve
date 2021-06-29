@@ -7,6 +7,7 @@
             <div class="media-body">
                 <h6 class="mt-0">{{ reply.user.name }}</h6>
                 <small>{{ reply.body }}</small>
+				<votes :default_votes="reply.votes" :entity_id="reply.id" :entity_owner="reply.user.id"></votes>
             </div>
         </div>
         <div v-if="comment.repliesCount > 0 && replies.next_page_url" class="text-center my-4">

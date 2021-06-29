@@ -4,7 +4,7 @@ namespace App\Models;
 
 class Comment extends Model
 {
-    protected $with = ['user'];
+    protected $with = ['user', 'votes'];
     protected $appends = ['repliesCount'];
 
 	public function video()
@@ -21,6 +21,11 @@ class Comment extends Model
 	{
 		return $this->belongsTo(User::class);
 	}
+
+    public function votes()
+    {
+        return $this->morphMany(Vote::class, 'voteable');
+    }
 
 	public function replies()
 	{
