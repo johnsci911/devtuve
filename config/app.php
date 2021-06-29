@@ -176,6 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
+
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*
