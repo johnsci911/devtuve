@@ -1878,8 +1878,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -22911,96 +22909,94 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "media" },
+    { staticClass: "media bg-light p-2 my-2 rounded-lg" },
     [
       _c("avatar", {
         staticClass: "mr-3",
         attrs: { username: _vm.comment.user.name, size: 30 }
       }),
       _vm._v(" "),
-      _c("div", { staticClass: "media-body" }, [
-        _c("h6", { staticClass: "mt-0" }, [
-          _vm._v(_vm._s(_vm.comment.user.name))
-        ]),
-        _vm._v(" "),
-        _c("small", [_vm._v(_vm._s(_vm.comment.body))]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "mt-2" },
-          [
-            _c(
-              "div",
-              { staticClass: "d-flex" },
-              [
-                _c("votes", {
-                  attrs: {
-                    default_votes: _vm.comment.votes,
-                    entity_id: _vm.comment.id,
-                    entity_owner: _vm.comment.user.id
+      _c(
+        "div",
+        { staticClass: "media-body" },
+        [
+          _c("h6", { staticClass: "mt-0" }, [
+            _vm._v(_vm._s(_vm.comment.user.name))
+          ]),
+          _vm._v(" "),
+          _c("small", [_vm._v(_vm._s(_vm.comment.body))]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "d-flex mb-4" },
+            [
+              _c("votes", {
+                attrs: {
+                  default_votes: _vm.comment.votes,
+                  entity_id: _vm.comment.id,
+                  entity_owner: _vm.comment.user.id
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-sm btn-default ml-2",
+                  class: {
+                    "btn-default": !_vm.addingReply,
+                    "btn-danger": _vm.addingReply
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.addingReply = !_vm.addingReply
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.addingReply ? "Cancel" : "Add reply"))]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _vm.addingReply
+            ? _c("div", { staticClass: "form-inline my-4 mb-2 w-full" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.body,
+                      expression: "body"
+                    }
+                  ],
+                  staticClass: "form-control form-control-sm w-80",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.body },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.body = $event.target.value
+                    }
                   }
                 }),
                 _vm._v(" "),
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-sm btn-default ml-2",
-                    class: {
-                      "btn-default": !_vm.addingReply,
-                      "btn-danger": _vm.addingReply
-                    },
-                    on: {
-                      click: function($event) {
-                        _vm.addingReply = !_vm.addingReply
-                      }
-                    }
+                    staticClass: "btn btn-sm btn-primary ml-2",
+                    on: { click: _vm.addReply }
                   },
-                  [_vm._v(_vm._s(_vm.addingReply ? "Cancel" : "Add reply"))]
+                  [_vm._v("Submit")]
                 )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _vm.addingReply
-              ? _c("div", { staticClass: "form-inline my-4 mb-2 w-full" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.body,
-                        expression: "body"
-                      }
-                    ],
-                    staticClass: "form-control form-control-sm w-80",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.body },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.body = $event.target.value
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-sm btn-primary ml-2",
-                      on: { click: _vm.addReply }
-                    },
-                    [_vm._v("Submit")]
-                  )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _c("replies", { ref: "replies", attrs: { comment: _vm.comment } })
-          ],
-          1
-        )
-      ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("replies", { ref: "replies", attrs: { comment: _vm.comment } })
+        ],
+        1
+      )
     ],
     1
   )
@@ -23030,7 +23026,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "card mt-5 p-5" },
+    { staticClass: "card mt-5 p-5 " },
     [
       _c("div", { staticClass: "form-inline my-4 w-full" }, [
         _c("input", {
@@ -23110,10 +23106,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {
-      staticClass: "bg-light",
-      class: _vm.comment.repliesCount > 0 ? "p-2 my-2" : ""
-    },
     [
       _vm._l(_vm.replies.data, function(reply) {
         return _c("div", { key: reply.id, staticClass: "media" }, [

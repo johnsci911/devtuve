@@ -26,7 +26,7 @@ class CommentFactory extends Factory
         return [
 			'body' => $this->faker->sentence(6),
 			'user_id' => function() {
-				return User::factory()->create()->id;
+				return User::first()->id;
 			},
 			'video_id' => function() {
 				return Video::factory()->create()->id;

@@ -1,5 +1,5 @@
 <template>
-	<div class="bg-light" :class="comment.repliesCount > 0 ? 'p-2 my-2' : ''">
+	<div>
         <div class="media" v-for="reply in replies.data" :key="reply.id">
             <a class="mr-3" href="#">
                 <avatar :username="reply.user.name" :size="30"></avatar>
@@ -35,7 +35,7 @@
             }
         },
         methods: {
-            fetchReplies() { 
+           fetchReplies() {
                 axios.get(this.replies.next_page_url).then(({ data }) => {
                     this.replies = {
                         ...data,
@@ -46,15 +46,15 @@
                     }
                 })
             },
-			addReply(reply) {
-				this.replies = {
-					...this.replies,
-					data: [
-						reply,
-						...this.replies.data
-					]
-				}
-			}
+            addReply(reply) {
+                this.replies = {
+                    ...this.replies,
+                    data: [
+                        reply,
+                        ...this.replies.data
+                    ]
+                }
+            } 
         }
     }
 </script>
