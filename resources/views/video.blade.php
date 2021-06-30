@@ -72,15 +72,7 @@
 				</form>
 				@endif
             </div>
-            <div class="card mt-5 p-5">        
-                <div class="form-inline my-4 w-full">
-                    <input type="text" class="form-control form-control-sm w-80">
-                    <button class="btn btn-sm btn-primary ml-2">
-                        <small>Add comment</small>
-                    </button>
-                </div>
-                <comments :video="{{ $video }}"></comments>
-            </div>
+			<comments :video="{{ $video }}"></comments>
         </div>
     </div>
 </div>

@@ -1,10 +1,10 @@
 <template>
-    <div class="bg-light p-2 my-2">
+	<div class="bg-light" :class="comment.repliesCount > 0 ? 'p-2 my-2' : ''">
         <div class="media" v-for="reply in replies.data" :key="reply.id">
             <a class="mr-3" href="#">
                 <avatar :username="reply.user.name" :size="30"></avatar>
             </a>
-            <div class="media-body">
+            <div class="media-body mb-4">
                 <h6 class="mt-0">{{ reply.user.name }}</h6>
                 <small>{{ reply.body }}</small>
 				<votes :default_votes="reply.votes" :entity_id="reply.id" :entity_owner="reply.user.id"></votes>
@@ -45,7 +45,16 @@
                         ]
                     }
                 })
-            }
+            },
+			addReply(reply) {
+				this.replies = {
+					...this.replies,
+					data: [
+						reply,
+						...this.replies.data
+					]
+				}
+			}
         }
     }
 </script>
