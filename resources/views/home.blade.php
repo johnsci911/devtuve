@@ -20,14 +20,14 @@
                 </div>
             </div>
 
-			@if($channels->count() !== 0)
+			@if ($channels->count() !== 0)
 				<div class="card mt-5">
 					<div class="card-header">
 						Channels
 					</div>
 
 					<div class="card-body">
-						<table class="table">
+						<table class="table table-striped">
 							<thead>
 								<th>Name</th>
 								<th></th>
@@ -53,14 +53,14 @@
 				</div>
 			@endif
 
-			@if($videos->count() !== 0)
+			@if ($videos->count() !== 0)
 				<div class="card mt-5">
 					<div class="card-header">
 						Videos
 					</div>
 
 					<div class="card-body">
-						<table class="table">
+						<table class="table table-striped">
 							<thead>
 								<th>Name</th>
 								<th></th>
