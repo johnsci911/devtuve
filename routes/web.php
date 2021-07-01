@@ -25,7 +25,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('channels', ChannelController::class);
 
-Route::get('videos/{video}', [VideoController::class, 'show']);
+Route::get('videos/{video}', [VideoController::class, 'show'])->name('videos.show');
 Route::put('videos/{video}', [VideoController::class, 'updateViews']);
 Route::get('videos/{video}/comments', [CommentController::class, 'index'])->name('video.comments');
 Route::get('comments/{comment}/replies', [CommentController::class, 'show'])->name('video.replies');

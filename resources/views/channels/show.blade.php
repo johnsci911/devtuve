@@ -79,6 +79,49 @@
                     @endif
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">
+                    Videos
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <th>Image</th>
+                            <th>Title</th>
+                            <th>Views</th>
+                            <th>Status</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            @foreach ($videos as $video)
+                                <tr>
+                                    <td>
+                                        <img src="{{ $video->thumbnail }}" alt="" width="40px" height="40px">
+                                    </td>
+                                    <td>
+                                        {{ $video->title }}
+                                    </td>
+                                    <td>
+                                        {{ $video->views }}
+                                    </td>
+                                    <td>
+                                        {{ $video->percentage === 100 ? 'Live' : 'Processing' }}
+                                    </td>
+                                    <td>
+                                        @if ($video->percentage === 100)
+                                            <a class="btn btn-sm btn-info" href="{{ route('videos.show', $video->id) }}">View</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                    <div class="row justify-content-center">
+                        {{ $videos->links() }}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
