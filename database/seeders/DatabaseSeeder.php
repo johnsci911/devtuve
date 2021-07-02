@@ -52,15 +52,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $userIds = User::all()->pluck('id')->toArray();
-        $userCount = User::count();
 
-        Comment::factory()->count(50)
+        Comment::factory()->count(5) 
             ->state(new Sequence(
-                ['user_id' => $userIds[rand(1, $userCount)]],
-                ['user_id' => $userIds[rand(1, $userCount)]],
-                ['user_id' => $userIds[rand(1, $userCount)]],
-                ['user_id' => $userIds[rand(1, $userCount)]],
-                ['user_id' => $userIds[rand(1, $userCount)]],
+                ['user_id' => $userIds[1]],
+                ['user_id' => $userIds[2]],
+                ['user_id' => $userIds[3]],
+                ['user_id' => $userIds[4]],
+                ['user_id' => $userIds[5]],
             )) 
             ->create([
                 'video_id' => $video->id
@@ -68,13 +67,13 @@ class DatabaseSeeder extends Seeder
 
         $comment = Comment::first();
 
-        Comment::factory()->count(50)
+        Comment::factory()->count(5) 
             ->state(new Sequence(
-                ['user_id' => $userIds[rand(1, $userCount)]],
-                ['user_id' => $userIds[rand(1, $userCount)]],
-                ['user_id' => $userIds[rand(1, $userCount)]],
-                ['user_id' => $userIds[rand(1, $userCount)]],
-                ['user_id' => $userIds[rand(1, $userCount)]],
+                ['user_id' => $userIds[6]],
+                ['user_id' => $userIds[7]],
+                ['user_id' => $userIds[8]],
+                ['user_id' => $userIds[9]],
+                ['user_id' => $userIds[10]],
             )) 
             ->create([
                 'video_id' => $video->id,

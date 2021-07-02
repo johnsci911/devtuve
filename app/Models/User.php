@@ -65,10 +65,12 @@ class User extends Authenticatable
 
 			return $vote->refresh();
 		} else {
-			return $entity->votes()->create([
+			$create = $entity->votes()->create([
 				'type' => $type,
 				'user_id' => $this->id,
 			]);
+
+			return $create;
 		}
 	}
 
