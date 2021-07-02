@@ -59,18 +59,14 @@ class User extends Authenticatable
 		$vote = $entity->votes->where('user_id', $this->id)->first();
 
 		if ($vote) {
-			$vote->update([
+			return $vote->update([
 				'type' => $type,
-			]);
-
-			return $vote->refresh();
+			])->refresh();
 		} else {
-			$create = $entity->votes()->create([
+			return $entity->votes()->create([
 				'type' => $type,
 				'user_id' => $this->id,
 			]);
-
-			return $create;
 		}
 	}
 
