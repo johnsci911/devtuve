@@ -24,12 +24,8 @@ class SubscriptionFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => function() {
-				return User::factory()->create()->id;
-            },
-            'channel_id' => function() {
-                return Channel::factory()->create()->id;
-            }
+            'user_id' => User::factory()->create()->id,
+            'channel_id' => Channel::factory()->create()->id,
         ];
     }
 }

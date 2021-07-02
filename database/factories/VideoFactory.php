@@ -23,9 +23,7 @@ class VideoFactory extends Factory
     public function definition()
     {
         return [
-			'channel_id' => function() {
-				return Channel::factory()->create()->id;
-			},
+			'channel_id' => Channel::factory()->create()->id,
 			'views' => $this->faker->numberBetween(1, 1000),
 			'thumbnail' => $this->faker->imageUrl(),
 			'percentage' => 100,
